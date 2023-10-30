@@ -6,10 +6,10 @@ export function Form(props){
       name: "",
       email:"",
       phoneNumber:"",
-      phoneType:"",
+      phoneType:"Home",
       staffType:"",
       bio:"",
-      emailNotification:""
+      emailNotification: false
   });
 
   const handleChange = (incomingKey)=>{
@@ -18,12 +18,15 @@ export function Form(props){
           const newObj = Object.assign({},user, {[incomingKey]: e.target.value })
           setUser(newObj)
       }
+  }
 
+  function handleSubmit() {
+    console.log(user)
   }
 
   return (
     <>
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <h1>Sign Up</h1>
         <input type="text" placeholder="name" value={user.name} onChange={handleChange("name")}/>
         <input type="text" placeholder="email" value={user.email} onChange={handleChange("email")}/>
@@ -31,15 +34,15 @@ export function Form(props){
 
         <label for="phoneType">Phone type:</label>
         <select id="phoneType" name="phoneType">
-            <option value={user.phoneType}>Home</option>
-            <option value={user.phoneType}>Work</option>
-            <option value={user.phoneType}>Mobile</option>
+            <option value={user.phoneType} onChange={handleChange("phoneType")}>Home</option>
+            <option value={user.phoneType} onChange={handleChange("phoneType")}>Work</option>
+            <option value={user.phoneType} onChange={handleChange("phoneType")}>Mobile</option>
         </select>
 
         <label for="staffType">Staff:</label>
-        <input type="radio" id="instructor" name="staffType" value={user.staffType}/>
+        <input type="radio" id="instructor" name="staffType" value={user.staffType} onChange={handleChange("staffType")}/>
         <label for="instructor">Instructor</label>
-        <input type="radio" id="student" name="staffType" value={user.staffType}/>
+        <input type="radio" id="student" name="staffType" value={user.staffType} onChange={handleChange("staffType")}/>
         <label for="student">Student</label>
 
         <br />
