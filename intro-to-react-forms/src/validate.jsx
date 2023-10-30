@@ -22,7 +22,7 @@ function validate(user) {
 
     if (user.phoneNumber) {
         const check = user.phoneNumber.split("-");
-        if (check.concat.length !== 10) return false;
+        if (check.join("").length !== 10) return false;
 
         let numericPhoneNumber = "";
         
